@@ -11,17 +11,17 @@ class HomepageTests(SimpleTestCase):
 
 
     def test_url_exists_at_correct_location(self):
-        self.assertEqual(self.status_code, 200)
+        self.assertEqual(self.response.status_code, 200)
 
 
     def test_homepage_template(self):
-        self.assertTemplateUsed(self, "home.html")
+        self.assertTemplateUsed(self.response, "home.html")
 
     def test_homepage_contains_correct_html(self):
-        self.assertContains(self, "home page")
+        self.assertContains(self.response, "home page")
 
     def test_homepage_does_not_contain_incorrect_html(self):
-        self.assertNotContains(self, "Hi there! I should not be on teh page.")
+        self.assertNotContains(self.response, "Hi there! I should not be on teh page.")
 
     def test_homepage_url_resolves_homepageview(self):
         view = resolve("/")
