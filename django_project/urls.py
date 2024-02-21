@@ -25,4 +25,5 @@ urlpatterns = [
     path("google/", TemplateView.as_view(template_name="google.html")),
     # local apps
     path("", include("pages.urls")),
+    path("books/", include("books.urls")),
 ]
