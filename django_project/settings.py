@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.account',
     "allauth.socialaccount",  # new
     "allauth.socialaccount.providers.google",
+    "debug_toolbar",
 
     # local
     'accounts.apps.AccountsConfig',
@@ -65,8 +66,9 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'allauth.account.middleware.AccountMiddleware',  # new
+    'allauth.account.middleware.AccountMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',     
 ]
 
 ROOT_URLCONF = 'django_project.urls'
@@ -189,3 +191,8 @@ ACCOUNT_UNIQUE_EMAIL = True # new
 
 
 DEFAULT_FROM_EMAIL = "admin@djangobookstore.com"
+
+
+import socket
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
